@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aminmart Cashier - Solusi Kasir Pintar</title>
+    <link rel="icon" type="image/png" href="cashier-icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 182, 193, 0.2);
+        }
+
+        .dark .glass {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(244, 63, 94, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-brand-50 text-slate-900 dark:bg-black dark:text-slate-100 transition-colors duration-300">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-3">
+                    <img src="cashier-icon.png" alt="Logo" class="w-8 h-8 rounded-lg shadow-sm">
+                    <span
+                        class="font-extrabold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-pink-400">Aminmart
+                        Cashier</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 font-semibold text-sm">
+                    <a href="index.html" class="text-brand-600">Home</a>
+                    <a href="contact.html"
+                        class="text-slate-600 hover:text-brand-600 dark:text-slate-400 dark:hover:text-pink-400 transition">Kontak</a>
+                    <a href="delete-account.html" class="text-rose-500 hover:text-rose-700 transition">Hapus Akun</a>
+                    <button id="themeToggle"
+                        class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-brand-100 dark:border-brand-900 shadow-sm transition-all hover:scale-105 active:scale-95">
+                        <span id="themeToggleIcon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-16 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+                Kelola Bisnis <span
+                    class="bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-pink-400">Lebih Mudah &
+                    Canggih</span>
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
+                Aplikasi kasir serbaguna untuk toko retail dan layanan digital (PPOB). Satu aplikasi untuk semua
+                kebutuhan transaksi Anda.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#"
+                    class="bg-brand-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-brand-500 transition shadow-xl shadow-brand-200/50 dark:shadow-brand-900/20">Download
+                    di Play Store</a>
+                <a href="contact.html"
+                    class="bg-white text-brand-600 dark:bg-slate-900 dark:text-brand-400 px-8 py-4 rounded-2xl font-bold border border-brand-100 dark:border-brand-900 hover:bg-brand-50 dark:hover:bg-brand-900/50 transition shadow-sm">Hubungi
+                    Admin</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Grid -->
+    <section class="py-20 bg-white dark:bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Fitur Unggulan</h2>
+                <p class="text-slate-500 dark:text-slate-400">Didesain untuk meningkatkan efisiensi operasional toko
+                    Anda.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="p-8 rounded-3xl bg-blue-50 border border-blue-100 dark:bg-blue-900/20 dark:border-blue-800">
+                    <div class="text-4xl mb-4">✨</div>
+                    <h3 class="text-xl font-bold mb-2 text-blue-900 dark:text-blue-300">Transaksi Digital</h3>
+                    <p class="text-blue-700 dark:text-blue-400 opacity-80">Jual Pulsa, PLN, E-Wallet, dan Voucher Game
+                        dengan kategori yang
+                        bisa Anda kustomisasi sendiri.</p>
+                </div>
+                <!-- Card 2 -->
+                <div
+                    class="p-8 rounded-3xl bg-indigo-50 border border-indigo-100 dark:bg-indigo-900/20 dark:border-indigo-800">
+                    <div class="text-4xl mb-4">📊</div>
+                    <h3 class="text-xl font-bold mb-2 text-indigo-900 dark:text-indigo-300">Laporan Akurat</h3>
+                    <p class="text-indigo-700 dark:text-indigo-400 opacity-80">Pantau laba/rugi harian hingga tahunan
+                        dengan filter rentang
+                        tanggal yang fleksibel.</p>
+                </div>
+                <!-- Card 3 -->
+                <div
+                    class="p-8 rounded-3xl bg-slate-50 border border-slate-100 dark:bg-slate-800/50 dark:border-slate-700">
+                    <div class="text-4xl mb-4">🖨️</div>
+                    <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-slate-200">Cetak Struk</h3>
+                    <p class="text-slate-700 dark:text-slate-400 opacity-80">Mendukung printer thermal Bluetooth untuk
+                        mencetak struk
+                        transaksi retail maupun digital secara instan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-slate-400 py-12 px-4 border-t border-brand-900/20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 border-b border-white/10 pb-10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="cashier-icon.png" alt="Logo" class="w-8 h-8 rounded-lg">
+                    <span class="font-extrabold text-xl text-white">Aminmart Cashier</span>
+                </div>
+                <p class="text-sm">Partner terbaik untuk pertumbuhan bisnis UMKM dan retail modern di Indonesia.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4">Tautan Penting</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="index.html" class="hover:text-brand-400 transition">Home</a></li>
+                    <li><a href="contact.html" class="hover:text-brand-400 transition">Kontak Dukungan</a></li>
+                    <li><a href="delete-account.html" class="hover:text-brand-400 transition text-rose-500">Kebijakan
+                            Akun</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4">Hubungi Kami</h4>
+                <p class="text-sm">Email: office.aminmart@gmail.com</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 text-center text-xs">
+            &copy; 2026 Aminmart Cashier. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateIcon(isDark);
+        });
+
+        function updateIcon(isDark) {
+            document.getElementById('themeToggleIcon').innerText = isDark ? '☀️' : '🌙';
+        }
+
+        // Initialize theme
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            updateIcon(true);
+        } else {
+            html.classList.remove('dark');
+            updateIcon(false);
+        }
+    </script>
+</body>
+
+</html>
