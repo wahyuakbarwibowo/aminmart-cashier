@@ -50,12 +50,15 @@
     <nav class="fixed w-full z-50 glass">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center gap-3">
+                <!-- Logo & Name with Link -->
+                <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition">
                     <img src="cashier-icon.png" alt="Logo" class="w-8 h-8 rounded-lg shadow-sm">
                     <span
                         class="font-extrabold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-pink-400">Aminmart
                         Cashier</span>
-                </div>
+                </a>
+
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8 font-semibold text-sm">
                     <a href="index.html" class="text-brand-600">Home</a>
                     <a href="contact.html"
@@ -65,6 +68,32 @@
                         class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-brand-100 dark:border-brand-900 shadow-sm transition-all hover:scale-105 active:scale-95">
                         <span id="themeToggleIcon">🌙</span>
                     </button>
+                </div>
+
+                <!-- Mobile Header Right -->
+                <div class="flex md:hidden items-center gap-4">
+                    <button id="mobileThemeToggle"
+                        class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-brand-100 dark:border-brand-900 shadow-sm transition-all">
+                        <span class="mobileThemeToggleIcon text-sm">🌙</span>
+                    </button>
+                    <!-- Hamburger Button -->
+                    <button id="menuBtn" class="text-slate-600 dark:text-slate-300 focus:outline-none">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Panel -->
+            <div id="mobileMenu" class="hidden md:hidden pb-6 pt-2 animate-in fade-in slide-in-from-top-4 duration-300">
+                <div class="flex flex-col space-y-4 font-bold text-base">
+                    <a href="index.html"
+                        class="text-brand-600 py-2 border-b border-brand-100 dark:border-brand-900/30">Home</a>
+                    <a href="contact.html"
+                        class="text-slate-600 dark:text-slate-400 hover:text-brand-600 py-2 border-b border-brand-100 dark:border-brand-900/30">Kontak</a>
+                    <a href="delete-account.html" class="text-rose-500 hover:text-rose-700 py-2">Hapus Akun</a>
                 </div>
             </div>
         </div>
@@ -78,8 +107,8 @@
                     Canggih</span>
             </h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
-                Aplikasi kasir serbaguna untuk toko retail dan layanan digital (PPOB). Satu aplikasi untuk semua
-                kebutuhan transaksi Anda.
+                Aplikasi kasir serbaguna untuk pencatatan transaksi toko retail dan manajemen penjualan produk digital
+                secara mandiri.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="https://wahyuakbarwibowo.itch.io/aminmart-cashier" target="_blank"
@@ -104,10 +133,9 @@
                 <!-- Card 1 -->
                 <div class="p-8 rounded-3xl bg-blue-50 border border-blue-100 dark:bg-blue-900/20 dark:border-blue-800">
                     <div class="text-4xl mb-4">✨</div>
-                    <h3 class="text-xl font-bold mb-2 text-blue-900 dark:text-blue-300">Transaksi Digital</h3>
-                    <p class="text-blue-700 dark:text-blue-400 opacity-80">Jual Pulsa, PLN, E-Wallet, dan Voucher Game
-                        dengan kategori yang
-                        bisa Anda kustomisasi sendiri.</p>
+                    <h3 class="text-xl font-bold mb-2 text-blue-900 dark:text-blue-300">Manajemen Produk Digital</h3>
+                    <p class="text-blue-700 dark:text-blue-400 opacity-80">Catat penjualan Pulsa, PLN, dan E-Wallet
+                        secara manual dengan kategori yang bisa Anda kustomisasi sesuai keinginan.</p>
                 </div>
                 <!-- Card 2 -->
                 <div
@@ -162,17 +190,23 @@
 
     <script>
         const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
         const html = document.documentElement;
 
-        themeToggle.addEventListener('click', () => {
+        const toggleTheme = () => {
             html.classList.toggle('dark');
             const isDark = html.classList.contains('dark');
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
             updateIcon(isDark);
-        });
+        };
+
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
 
         function updateIcon(isDark) {
-            document.getElementById('themeToggleIcon').innerText = isDark ? '☀️' : '🌙';
+            const icon = isDark ? '☀️' : '🌙';
+            document.getElementById('themeToggleIcon').innerText = icon;
+            document.querySelector('.mobileThemeToggleIcon').innerText = icon;
         }
 
         // Initialize theme
@@ -183,6 +217,23 @@
             html.classList.remove('dark');
             updateIcon(false);
         }
+
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const isOpen = !mobileMenu.classList.contains('hidden');
+
+            // Toggle hamburger to X icon
+            if (isOpen) {
+                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            } else {
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+            }
+        });
     </script>
 </body>
 

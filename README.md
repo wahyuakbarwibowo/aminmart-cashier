@@ -1,6 +1,6 @@
 # Aminmart Cashier Web Profile
 
-A modern, responsive landing page for **Aminmart Cashier**, a smart cashier application designed for retail businesses and digital services (PPOB) in Indonesia.
+A modern, responsive landing page for **Aminmart Cashier**, a smart cashier application designed for retail businesses and manual recording of digital sales in Indonesia.
 
 ## 🚀 Overview
 
@@ -10,7 +10,7 @@ Aminmart Cashier is a versatile solution for UMKM and modern retail. This web pr
 
 - **Modern UI/UX**: Built with a clean aesthetics, glassmorphism effects, and a premium feel.
 - **Feature Showcase**: Highlights core app capabilities:
-  - **Digital Transactions**: Pulsa, PLN, E-Wallet, and Game Vouchers.
+  - **Digital Sales Management**: Record manual sales of Pulsa, PLN, E-Wallet, and Game Vouchers.
   - **Accurate Reporting**: Daily to yearly profit/loss monitoring.
   - **Receipt Printing**: Bluetooth thermal printer support.
 - **Contact Support**: Dedicated contact page for user inquiries and technical support.
