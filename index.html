@@ -24,6 +24,87 @@
             }
         }
     </script>
+    <script>
+        // Statistics tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track page view
+            fetch('stats.json')
+                .then(response => response.json())
+                .then(data => {
+                    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                    if (data.pageViews[currentPage] !== undefined) {
+                        data.pageViews[currentPage]++;
+                    } else {
+                        data.pageViews[currentPage] = 1;
+                    }
+                    
+                    // Update last updated timestamp
+                    data.lastUpdated = new Date().toISOString();
+                    
+                    // Store updated data back to localStorage for client-side tracking
+                    localStorage.setItem('pageStats', JSON.stringify(data));
+                    
+                    // In a real server environment, you would send this to a server endpoint
+                    // Uncomment the following code if you have a server endpoint to handle updates
+                    /*
+                    fetch('/update-stats.php', {  // or whatever server technology you use
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .catch(error => {
+                        console.error('Error updating stats on server:', error);
+                    });
+                    */
+                })
+                .catch(error => {
+                    console.error('Error loading stats:', error);
+                });
+            
+            // Track download button clicks
+            const downloadButtons = document.querySelectorAll('a[href*=".apk"][download]');
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    fetch('stats.json')
+                        .then(response => response.json())
+                        .then(data => {
+                            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                            if (data.downloadClicks[currentPage] !== undefined) {
+                                data.downloadClicks[currentPage]++;
+                            } else {
+                                data.downloadClicks[currentPage] = 1;
+                            }
+                            
+                            // Update last updated timestamp
+                            data.lastUpdated = new Date().toISOString();
+                            
+                            // Store updated data back to localStorage for client-side tracking
+                            localStorage.setItem('downloadStats', JSON.stringify(data));
+                            
+                            // In a real server environment, you would send this to a server endpoint
+                            // Uncomment the following code if you have a server endpoint to handle updates
+                            /*
+                            fetch('/update-stats.php', {  // or whatever server technology you use
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(data)
+                            })
+                            .catch(error => {
+                                console.error('Error updating stats on server:', error);
+                            });
+                            */
+                        })
+                        .catch(error => {
+                            console.error('Error updating download stats:', error);
+                        });
+                });
+            });
+        });
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
         rel="stylesheet">
     <style>
@@ -64,6 +145,7 @@
                     <a href="contact.html"
                         class="text-slate-600 hover:text-brand-600 dark:text-slate-400 dark:hover:text-pink-400 transition">Kontak</a>
                     <a href="delete-account.html" class="text-rose-500 hover:text-rose-700 transition">Hapus Akun</a>
+                    <a href="stats.html" class="text-slate-600 hover:text-brand-600 dark:text-slate-400 dark:hover:text-pink-400 transition">Statistik</a>
                     <button id="themeToggle"
                         class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-brand-100 dark:border-brand-900 shadow-sm transition-all hover:scale-105 active:scale-95">
                         <span id="themeToggleIcon">🌙</span>
@@ -93,7 +175,8 @@
                         class="text-brand-600 py-2 border-b border-brand-100 dark:border-brand-900/30">Home</a>
                     <a href="contact.html"
                         class="text-slate-600 dark:text-slate-400 hover:text-brand-600 py-2 border-b border-brand-100 dark:border-brand-900/30">Kontak</a>
-                    <a href="delete-account.html" class="text-rose-500 hover:text-rose-700 py-2">Hapus Akun</a>
+                    <a href="delete-account.html" class="text-rose-500 hover:text-rose-700 py-2 border-b border-brand-100 dark:border-brand-900/30">Hapus Akun</a>
+                    <a href="stats.html" class="text-slate-600 dark:text-slate-400 hover:text-brand-600 py-2 border-b border-brand-100 dark:border-brand-900/30">Statistik</a>
                 </div>
             </div>
         </div>
