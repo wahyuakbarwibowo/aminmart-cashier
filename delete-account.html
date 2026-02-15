@@ -25,28 +25,70 @@
         }
     </script>
     <script>
-        // Statistics tracking
+        // Statistics tracking for GitHub Pages (client-side only)
         document.addEventListener('DOMContentLoaded', function() {
-            // Track page view
-            fetch('stats.json')
-                .then(response => response.json())
-                .then(data => {
-                    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-                    if (data.pageViews[currentPage] !== undefined) {
-                        data.pageViews[currentPage]++;
-                    } else {
-                        data.pageViews[currentPage] = 1;
+            // Function to initialize stats from localStorage or stats.json
+            async function initializeStats() {
+                let stats = JSON.parse(localStorage.getItem('websiteStats')) || null;
+                
+                // If no stats in localStorage, try to load from stats.json
+                if (!stats) {
+                    try {
+                        const response = await fetch('stats.json');
+                        if (response.ok) {
+                            stats = await response.json();
+                        } else {
+                            // Default stats if stats.json doesn't exist
+                            stats = {
+                                pageViews: {
+                                    'index.html': 0,
+                                    'contact.html': 0,
+                                    'delete-account.html': 0
+                                },
+                                downloadClicks: {
+                                    'index.html': 0
+                                },
+                                lastUpdated: new Date().toISOString()
+                            };
+                        }
+                    } catch (error) {
+                        console.warn('Could not load stats.json, using default stats:', error);
+                        stats = {
+                            pageViews: {
+                                'index.html': 0,
+                                'contact.html': 0,
+                                'delete-account.html': 0
+                            },
+                            downloadClicks: {
+                                'index.html': 0
+                            },
+                            lastUpdated: new Date().toISOString()
+                        };
                     }
-                    
-                    // Update last updated timestamp
-                    data.lastUpdated = new Date().toISOString();
-                    
-                    // Store updated data back to localStorage for client-side tracking
-                    localStorage.setItem('pageStats', JSON.stringify(data));
-                })
-                .catch(error => {
-                    console.error('Error loading stats:', error);
-                });
+                }
+                
+                return stats;
+            }
+            
+            // Track page view
+            initializeStats().then(stats => {
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                
+                if (stats.pageViews[currentPage] !== undefined) {
+                    stats.pageViews[currentPage]++;
+                } else {
+                    stats.pageViews[currentPage] = 1;
+                }
+                
+                // Update last updated timestamp
+                stats.lastUpdated = new Date().toISOString();
+                
+                // Store updated data back to localStorage
+                localStorage.setItem('websiteStats', JSON.stringify(stats));
+                
+                // Log the event
+                console.log(`Page view tracked for ${currentPage}. Total views: ${stats.pageViews[currentPage]}`);
+            });
         });
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"

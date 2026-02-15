@@ -217,6 +217,24 @@
             contentElement.classList.add('hidden');
             errorElement.classList.add('hidden');
             
+            // Try to get stats from localStorage first
+            const storedStats = localStorage.getItem('websiteStats');
+            if (storedStats) {
+                try {
+                    const data = JSON.parse(storedStats);
+                    displayStats(data);
+                    loadingElement.classList.add('hidden');
+                    contentElement.classList.remove('hidden');
+                } catch (error) {
+                    console.error('Error parsing stored stats:', error);
+                    loadFromJsonFile(); // Fallback to loading from stats.json
+                }
+            } else {
+                loadFromJsonFile(); // Load from stats.json if no stored stats
+            }
+        }
+
+        function loadFromJsonFile() {
             fetch('stats.json')
                 .then(response => {
                     if (!response.ok) {
