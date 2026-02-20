@@ -12,10 +12,31 @@ Aminmart Cashier is a versatile solution for UMKM and modern retail. This web pr
 - **Feature Showcase**: Highlights core app capabilities:
   - **Digital Sales Management**: Record manual sales of Pulsa, PLN, E-Wallet, and Game Vouchers.
   - **Accurate Reporting**: Daily to yearly profit/loss monitoring.
-  - **Receipt Printing**: Bluetooth thermal printer support.
+  - **Receipt Printing**: Bluetooth thermal printer support via RawBT app.
 - **Contact Support**: Dedicated contact page for user inquiries and technical support.
 - **Policy Compliance**: Includes a `delete-account.html` page to comply with App Store/Play Store data deletion policies.
 - **Fully Responsive**: Optimized for all devices using Tailwind CSS.
+
+## 📥 Download & Installation
+
+### Download Links
+
+1. **RawBT** (Required for receipt printing): `apk/rawbt/app-release.apk`
+2. **Aminmart Cashier**: `apk/cashier/app-arm64-v8a-release.apk`
+
+### Installation Steps
+
+1. Download and install **RawBT** application first
+2. Open RawBT application and ensure the notification `Running on 127.0.0.1:8080` appears
+3. Grant **Location** permission to RawBT application
+4. Ensure your Bluetooth thermal printer is **powered on**
+5. **Scan and pair** the Bluetooth printer in RawBT application
+6. Perform a **test print** in RawBT to verify the printer is working properly
+7. Download and install **Aminmart Cashier** application
+8. Open Aminmart Cashier and start managing your business
+9. For receipt printing, ensure RawBT is running and the printer is connected
+
+> **Note**: RawBT is a third-party application required for printing transaction receipts via Bluetooth thermal printers.
 
 ## 🛠️ Technology Stack
 
@@ -30,7 +51,16 @@ Aminmart Cashier is a versatile solution for UMKM and modern retail. This web pr
 .
 ├── index.html           # Main landing page (Hero, Features, Footer)
 ├── contact.html         # Support contact form and info
-└── delete-account.html  # Account deletion request page
+├── delete-account.html  # Account deletion request page
+├── stats.html           # Statistics page
+├── stats.json           # Statistics data
+├── update-stats.js      # Client-side stats updater
+├── update-stats.php     # Server-side stats updater
+└── apk/
+    ├── cashier/
+    │   └── app-arm64-v8a-release.apk  # Aminmart Cashier APK
+    └── rawbt/
+        └── app-release.apk            # RawBT APK (for receipt printing)
 ```
 
 ## 🚀 How to Run
