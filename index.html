@@ -98,20 +98,15 @@
                 button.addEventListener('click', function() {
                     initializeStats().then(stats => {
                         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-                        
+
                         if (stats.downloadClicks[currentPage] !== undefined) {
                             stats.downloadClicks[currentPage]++;
                         } else {
                             stats.downloadClicks[currentPage] = 1;
                         }
-                        
-                        // Update last updated timestamp
+
                         stats.lastUpdated = new Date().toISOString();
-                        
-                        // Store updated data back to localStorage
                         localStorage.setItem('websiteStats', JSON.stringify(stats));
-                        
-                        // Log the event
                         console.log(`Download click tracked for ${currentPage}. Total downloads: ${stats.downloadClicks[currentPage]}`);
                     });
                 });
@@ -159,14 +154,10 @@
             <div class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-3xl p-8 mb-10 border border-brand-100 dark:border-brand-900 max-w-3xl mx-auto">
                 <h2 class="text-2xl font-bold mb-6">Download Aplikasi</h2>
 
-                <!-- Download Buttons -->
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="apk/rawbt/app-release.apk" download
-                        class="bg-slate-700 text-white px-6 py-3 rounded-xl font-bold hover:bg-slate-600 transition shadow-lg flex items-center gap-2">
-                        <span>🖨️</span> Download RawBT
-                    </a>
-                    <a href="apk/cashier/app-arm64-v8a-release.apk" download
-                        class="bg-brand-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-brand-500 transition shadow-lg flex items-center gap-2">
+                <!-- Download Button -->
+                <div class="flex justify-center">
+                    <a href="apk/cashier/app-release.apk" download
+                        class="bg-brand-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-500 transition shadow-lg flex items-center gap-2">
                         <span>✨</span> Download Aminmart Cashier
                     </a>
                 </div>
@@ -176,10 +167,6 @@
                         Lihat panduan instalasi lengkap →
                     </a>
                 </div>
-
-                <p class="text-sm text-slate-500 dark:text-slate-400 mt-4">
-                    ⚠️ RawBT diperlukan untuk mencetak struk transaksi melalui printer thermal Bluetooth.
-                </p>
             </div>
             
             <div class="flex flex-wrap justify-center gap-4">
