@@ -32,8 +32,7 @@ const NAVBAR_CONFIG = {
     { href: 'index.html', text: 'Home', activeClass: 'text-brand-600' },
     { href: 'install.html', text: 'Instalasi', activeClass: 'text-brand-600' },
     { href: 'contact.html', text: 'Kontak', activeClass: 'text-brand-600' },
-    { href: 'delete-account.html', text: 'Hapus Akun', activeClass: 'text-brand-600', specialClass: 'text-rose-500 hover:text-rose-700' },
-    { href: 'stats.html', text: 'Statistik', activeClass: 'text-brand-600' }
+    { href: 'delete-account.html', text: 'Hapus Akun', activeClass: 'text-brand-600', specialClass: 'text-rose-500 hover:text-rose-700' }
   ],
   themeToggle: true
 };
